@@ -1,0 +1,56 @@
+.formInput {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 40%;
+}
+
+span {
+  font-size: 1.2rem;
+  color: #888;
+  display: none;
+}
+
+input[focused="true"]:valid {
+  border: 2px solid green;
+}
+
+input[focused="true"]:invalid {
+  border: 2px solid red;
+}
+
+input[focused="true"]:invalid~span {
+  display: block;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+label {
+  align-self: flex-start;
+  margin-left: 30%;
+  margin-top: 20px;
+}
+
+.fondo {
+  background-color: #f8f5f5fb;
+  border-radius: 12px;
+  padding: 1em;
+  margin-top: 1em;
+}
+
