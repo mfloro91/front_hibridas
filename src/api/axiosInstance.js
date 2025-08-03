@@ -8,4 +8,7 @@ const axiosInstance = axios.create({
 
 console.log("Backend base URL:", process.env.REACT_APP_BASE_URL);
 
+console.log("Todas las variables:", process.env);
+
+
 export default axiosInstance;
