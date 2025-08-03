@@ -3,6 +3,7 @@ import FormInput from "./FormInput";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import axiosInstance from "../../api/axiosInstance";
 
 const FormLogin = () => {
     const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ const FormLogin = () => {
         }
 
         try {
-            const response = await axios.post(import.meta.env.VITE_BASE_URL+'loginUser', loginUser );
+            const response = await axiosInstance.post("/users/login", loginUser);
 
             if (response.status === 200) {
                 console.log("Response login:", response.data);
