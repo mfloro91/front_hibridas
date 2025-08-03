@@ -3,6 +3,7 @@ import { Card, Button } from '../routes/UiComponents'
 import imgSpa from '../../assets/spa.jpg'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import axiosInstance from '../../api/axiosInstance.js'
 
 function Services() {
 
@@ -32,7 +33,7 @@ function Services() {
 
     const fetchServicesAll = async (token) => {
         try {
-            const res = await axios.get("http://localhost:3000/services/all", {
+            const res = await axiosInstance.get("/services/all", {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setServices(res.data)
@@ -43,7 +44,7 @@ function Services() {
 
     const fetchServices = async (token) => {
         try {
-            const res = await axios.get("http://localhost:3000/services", {
+            const res = await axiosInstance.get("/services", {
             headers: { Authorization: `Bearer ${token}` }
             });
             setServices(res.data);

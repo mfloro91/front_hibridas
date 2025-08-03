@@ -3,6 +3,7 @@ import { Card } from '../../routes/UiComponents'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import axiosInstance from '../../../api/axiosInstance.js'
 
 function Orders() {
     const [orders, setOrders] = useState([])
@@ -26,7 +27,7 @@ function Orders() {
     const fetchOrders = async (token, role) => {
         try {
             const endpoint = role === "superadmin" ? "/orders/all" : "/orders";
-            const res = await axios.get(`http://localhost:3000${endpoint}`, {
+            const res = await axiosInstance.get(`${endpoint}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 

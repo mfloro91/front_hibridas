@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import FormHotel from "../../UI/FormHotel";
 import { toast } from 'react-toastify';
+import axiosInstance from "../../../api/axiosInstance.js";
 
 
 function EditHotel() {
@@ -18,7 +19,7 @@ function EditHotel() {
         const fetchHotel = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const res = await axios.get(`http://localhost:3000/hotels/${id}`, {
+                const res = await axiosInstance.get(`/hotels/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setHotel(res.data);
@@ -37,7 +38,7 @@ function EditHotel() {
 
         try {
             const token = localStorage.getItem("token");
-            const res= await axios.put(`http://localhost:3000/hotels/${id}`, updatedData, {
+            const res= await axiosInstance.put(`/hotels/${id}`, updatedData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 

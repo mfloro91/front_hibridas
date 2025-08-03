@@ -3,6 +3,7 @@ import { Card } from '../../routes/UiComponents'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import axiosInstance from '../../../api/axiosInstance.js'
 
 function Users() {
     const [users, setUsers] = useState([])
@@ -24,7 +25,7 @@ function Users() {
     // Endpoint: GET ALL USERS con autenticación
     const fetchUsers = async (token) => {
         try {
-            const res = await axios.get("http://localhost:3000/users", {
+            const res = await axiosInstance.get(`/users`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -39,7 +40,7 @@ function Users() {
         const token = localStorage.getItem("token");
 
         try {
-            await axios.patch(`http://localhost:3000/users/${id}`, { role: newRole }, {
+            await axiosInstance.patch(`/users/${id}`, { role: newRole }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 

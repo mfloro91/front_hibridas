@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import axiosInstance from '../../api/axiosInstance.js';
 
 function ServiceReserve() {
     const { id } = useParams();
@@ -15,7 +16,7 @@ function ServiceReserve() {
         const token = localStorage.getItem("token");
         if (!token) return navigate("/");
 
-        axios.get(`http://localhost:3000/services/${id}`, {
+        axiosInstance.get(`/services/${id}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((res) => setService(res.data))
@@ -25,7 +26,7 @@ function ServiceReserve() {
     const handleReserve = async () => {
         const token = localStorage.getItem("token");
         try {
-            await axios.post(`http://localhost:3000/orders`, {
+            await axiosInstance.post(`/orders`, {
                 service_id: service._id,
                 note: `${note} — Día: ${date}`
             }, {

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from '../routes/UiComponents'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import axiosInstance from '../../api/axiosInstance.js'
 
 function ServiceById() {
 
@@ -30,7 +31,7 @@ function ServiceById() {
         const fetchServiceById = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const res = await axios.get(`http://localhost:3000/services/${id}`, {
+                const res = await axiosInstance.get(`/services/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setService(res.data);
@@ -54,7 +55,7 @@ function ServiceById() {
     const handleDelete = async () => {
         try {
             const token = localStorage.getItem("token");
-            await axios.delete(`http://localhost:3000/services/${id}`, {
+            await axiosInstance.delete(`/services/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             toast.success("Servicio eliminado correctamente.");
@@ -72,7 +73,7 @@ function ServiceById() {
     const reservarServicio = async () => {
         try {
             const token = localStorage.getItem("token");
-            const res = await axios.post('http://localhost:3000/orders', {
+            const res = await axiosInstance.post('/orders', {
                 service_id: service._id,
             }, {
                 headers: {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Card, Button } from '../../routes/UiComponents'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import axiosInstance from '../../../api/axiosInstance.js'
 
 function Hotels() {
 
@@ -37,7 +38,7 @@ function Hotels() {
     // Enpoint: GET HOTELS ALL
     const fetchHotels = async (token) => {
         try {
-            const res = await axios.get("http://localhost:3000/hotels", {
+            const res = await axiosInstance.get(`/hotels`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -52,7 +53,7 @@ function Hotels() {
 
     const fetchFilteredHotels = async (token, text) => {
         try {
-            const res = await axios.get("http://localhost:3000/hotels/search", {
+            const res = await axiosInstance.get(`/hotels/search`, {
                 params: { search: text },
                 headers: { Authorization: `Bearer ${token}` }
             });

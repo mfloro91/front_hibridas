@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import FormService from "../../UI/FormService";
 import { toast } from 'react-toastify';
+import axiosInstance from "../../../api/axiosInstance.js";
 
 function EditService() {
 
@@ -26,7 +27,7 @@ function EditService() {
     const fetchService = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(`http://localhost:3000/services/${id}`, {
+        const res = await axiosInstance.get(`/services/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setService(res.data);
@@ -45,7 +46,7 @@ function EditService() {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.put(`http://localhost:3000/services/${id}`, updatedData, {
+      const res = await axiosInstance.put(`/services/${id}`, updatedData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

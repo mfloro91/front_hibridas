@@ -4,6 +4,7 @@ import FormHotel from '../../UI/FormHotel'
 import { Button } from '../../routes/UiComponents'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import axiosInstance from '../../../api/axiosInstance.js'
 
 // CreateHotel trae el formHotel y una petición POST para crear un nuevo hotel
 
@@ -28,7 +29,7 @@ function CreateHotel() {
         city: formData.city,
       };
 
-      const res = await axios.post("http://localhost:3000/hotels", newHotel, {
+      const res = await axiosInstance.post("/hotels", newHotel, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

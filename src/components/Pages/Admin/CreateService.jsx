@@ -4,6 +4,7 @@ import FormService from '../../UI/FormService'
 import { Button } from '../../routes/UiComponents'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import axiosInstance from '../../../api/axiosInstance.js'
 
 
 // CreateService trae el formService y una petición POST para crear un nuevo servicio
@@ -33,7 +34,7 @@ function CreateService() {
         availableHours: formData.availableHours,
       };
 
-      const res = await axios.post("http://localhost:3000/services", newService, {
+      const res = await axiosInstance.post(`/services`, newService, {
         headers: { Authorization: `Bearer ${token}` }
       });
 

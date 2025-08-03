@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Card, Hotel } from '../routes/UiComponents.js'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import axiosInstance from '../../api/axiosInstance.js'
 
 function Home() {
     const [hotel, setHotel] = useState(null);
@@ -30,7 +31,7 @@ function Home() {
         if (token && hotelId) {
             const fetchHotel = async () => {
                 try {
-                    const res = await axios.get(`http://localhost:3000/hotels/${hotelId}`, {
+                    const res = await axiosInstance.get(`/hotels/${hotelId}`, {
                         headers: { Authorization: `Bearer ${token}` }
                     });
 

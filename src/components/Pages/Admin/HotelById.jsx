@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from '../../routes/UiComponents'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import axiosInstance from '../../../api/axiosInstance.js'
 
 
 function HotelById() {
@@ -33,7 +34,7 @@ function HotelById() {
         const fetchHotelById = async () => {
             try {
                 const token = localStorage.getItem("token");
-                const res = await axios.get(`http://localhost:3000/hotels/${id}`, {
+                const res = await axiosInstance.get(`/hotels/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setHotel(res.data);
@@ -57,7 +58,7 @@ function HotelById() {
     const handleDelete = async () => {
         try {
             const token = localStorage.getItem("token");
-            await axios.delete(`http://localhost:3000/hotels/${id}`, {
+            await axiosInstance.delete(`/hotels/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             toast.success("Hotel eliminado correctamente.");
