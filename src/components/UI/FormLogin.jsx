@@ -22,7 +22,7 @@ const FormLogin = () => {
         }
 
         try {
-            const response = await axiosInstance.post("/users/login", loginUser);
+            const response = await axios.post(import.meta.env.VITE_BASE_URL+`/users/login`, loginUser);
 
             if (response.status === 200) {
                 console.log("Response login:", response.data);
