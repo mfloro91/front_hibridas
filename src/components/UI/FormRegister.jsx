@@ -3,6 +3,7 @@ import FormInput from "./FormInput";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import axiosInstance from "../../api/axiosInstance";
 
 const FormRegister = () => {
 
@@ -19,7 +20,7 @@ const FormRegister = () => {
     useEffect(() => {
         const fetchHotels = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/hotels");
+                const response = await axiosInstance.get("/hotels");
                 setHotels(response.data);
             } catch (error) {
                 console.error("Error accediendo a hoteles", error);
@@ -40,7 +41,7 @@ const FormRegister = () => {
             password: formData.password,
         }
         try {
-            await axios.post("http://localhost:3000/users", newUser);
+            await axiosInstance.post("/users", newUser);
             setFormData({
                 hotel_id: "",
                 name: "",
