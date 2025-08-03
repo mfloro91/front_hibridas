@@ -3,7 +3,7 @@ import FormInput from "./FormInput";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axiosInstance from "../../api/axiosInstance";
+import axiosInstance from "../../api/axiosInstance.js";
 
 const FormLogin = () => {
     const [formData, setFormData] = useState({
